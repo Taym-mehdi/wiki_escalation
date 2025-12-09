@@ -18,7 +18,7 @@ import re
 from urllib.parse import urljoin, unquote
 
 # ====== Config ======
-USER_AGENT = "TaymProjectBot/0.1 (your_email@example.com) Python/requests - research scraping"
+USER_AGENT = "TaymProjectBot/0.1 (Taym.mehdi@stud.uni-hannover.de) Python/requests - research scraping"
 SLEEP_SECONDS = 1.0   # polite delay between requests
 WIKI_BASE = "https://en.wikipedia.org"
 
@@ -127,8 +127,8 @@ def main(page_name: str, outdir: str, limit: int):
                 record = {
                     "title": title,
                     "url": url,
-                    "wikitext": result["wikitext"],
-                    "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    "wikitext": result.get("wikitext"),
+                    "fetched_at": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()),
                     "revision_timestamp": result.get("timestamp")
                 }
                 outf.write(json.dumps(record) + "\n")
